@@ -1,26 +1,23 @@
-import { ChangeEvent, useMemo, useState } from "react";
-import { NpcModels } from "../lib/npc-models";
-import { Npc } from "../lib/npc-builder";
+import { ChangeEvent, useState } from "react";
+import { rootStore } from "../stores/root-store";
+import { TownStore } from "../stores/town-store";
+import { observer } from "mobx-react-lite";
 
 interface NpcSelectFormProps {
-  availableNpcs: Npc[];
-  addNpc: (npcName: string) => void;
+  town: TownStore;
 }
 
-const NpcSelectForm = ({ availableNpcs, addNpc }: NpcSelectFormProps) => {
-  const [selectedNpc, setSelectedNpc] = useState("");
+const NpcSelectForm = observer(({ town }: NpcSelectFormProps) => {
+  const { worldStore } = rootStore;
 
-  const availableNpcOptions = useMemo(() => {
-    const availableNpcsNames = availableNpcs.map((npc) => npc.name);
-    return NpcModels.filter((npc) => !availableNpcsNames.includes(npc.name));
-  }, [availableNpcs]);
+  const [selectedNpc, setSelectedNpc] = useState("");
 
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setSelectedNpc(event.target.value);
   };
 
   const handleSubmit = () => {
-    addNpc(selectedNpc);
+    town.addNpc(selectedNpc);
     setSelectedNpc("");
   };
 
@@ -33,7 +30,7 @@ const NpcSelectForm = ({ availableNpcs, addNpc }: NpcSelectFormProps) => {
         className="npc-select bg-town-select border-2 border-town-select-border rounded py-[5px] px-[10px]"
       >
         <option value="" hidden disabled></option>
-        {availableNpcOptions.map((npc) => (
+        {worldStore.availableNpcs.map((npc) => (
           <option key={npc.name} value={npc.name}>
             {npc.name}
           </option>
@@ -47,6 +44,6 @@ const NpcSelectForm = ({ availableNpcs, addNpc }: NpcSelectFormProps) => {
       </button>
     </>
   );
-};
+});
 
 export default NpcSelectForm;

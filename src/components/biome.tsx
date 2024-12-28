@@ -1,23 +1,24 @@
+import { observer } from "mobx-react-lite";
 import { cn } from "../lib/utils";
+import { TownStore } from "../stores/town-store";
 
 interface BiomeProps {
   name: string;
-  selectedBiomes: string[];
-  selectBiome: (biome: string) => void;
+  town: TownStore;
 }
 
-const Biome = ({ name, selectedBiomes, selectBiome }: BiomeProps) => {
+const Biome = observer(({ name, town }: BiomeProps) => {
   return (
     <img
       className={cn(
         "w-[35px] grayscale cursor-pointer",
-        selectedBiomes.includes(name) ? "grayscale-0" : "grayscale"
+        town.biomes.includes(name) ? "grayscale-0" : "grayscale"
       )}
       src={`/src/assets/biomes/${name}.png`}
       title={name}
-      onClick={() => selectBiome(name)}
+      onClick={() => town.selectBiome(name)}
     />
   );
-};
+});
 
 export default Biome;
