@@ -30,6 +30,7 @@ const Town = observer(({ town }: TownProps) => {
           <NpcProfile
             key={npc.name}
             npc={npc}
+            percentages={town.npcHappiness[npc.name]}
             removeNpc={() => town.removeNpc(npc.name)}
           />
         ))}

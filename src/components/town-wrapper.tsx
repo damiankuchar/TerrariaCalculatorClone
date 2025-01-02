@@ -2,12 +2,14 @@ import { observer } from "mobx-react-lite";
 import { rootStore } from "../stores/root-store";
 import NextTownButton from "./next-town-button";
 import Town from "./town";
+import Toolbar from "./toolbar";
 
 const TownWrapper = observer(() => {
   const { worldStore } = rootStore;
 
   return (
-    <div className="mt-1 flex flex-col gap-1.5 min-w-[600px]">
+    <div className="flex flex-col gap-1.5 min-w-[600px]">
+      <Toolbar />
       {worldStore.towns.map((town, index) => (
         <Town key={index} town={town} />
       ))}

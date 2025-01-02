@@ -4,10 +4,15 @@ import { Npc } from "../lib/npc-builder";
 import { NpcModels } from "../lib/npc-models";
 
 export class WorldStore {
+  displayMode: "normal" | "detailed" = "normal";
   towns: TownStore[] = [];
 
   constructor() {
     makeAutoObservable(this);
+  }
+
+  toggleDetailedMode() {
+    this.displayMode = this.displayMode === "normal" ? "detailed" : "normal";
   }
 
   addTown() {
