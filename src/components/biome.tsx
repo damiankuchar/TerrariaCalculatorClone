@@ -8,13 +8,16 @@ interface BiomeProps {
 }
 
 const Biome = observer(({ name, town }: BiomeProps) => {
+  const biomeImageSrc = new URL(`../assets/biomes/${name}.png`, import.meta.url)
+    .href;
+
   return (
     <img
       className={cn(
         "w-[35px] grayscale cursor-pointer",
         town.biomes.includes(name) ? "grayscale-0" : "grayscale"
       )}
-      src={`/src/assets/biomes/${name}.png`}
+      src={biomeImageSrc}
       title={name}
       onClick={() => town.selectBiome(name)}
     />

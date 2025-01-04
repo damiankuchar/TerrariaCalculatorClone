@@ -7,6 +7,11 @@ interface NpcTooltipProps extends HtmlHTMLAttributes<HTMLDivElement> {
 }
 
 const NpcTooltip = ({ npc, className }: NpcTooltipProps) => {
+  const getEmoteUrl = (emoteName: string) => {
+    const name = emoteName.replace(" ", "");
+    return new URL(`../assets/emotes/${name}.png`, import.meta.url).href;
+  };
+
   const renderTableRow = (
     npcList: string[],
     biomeList: string[],
@@ -31,10 +36,7 @@ const NpcTooltip = ({ npc, className }: NpcTooltipProps) => {
             ) : (
               biomeList.map((biomeName) => (
                 <div key={biomeName} className="w-8">
-                  <img
-                    title={biomeName}
-                    src={`/src/assets/emotes/${biomeName.replace(" ", "")}.png`}
-                  />
+                  <img title={biomeName} src={getEmoteUrl(biomeName)} />
                 </div>
               ))
             )}
@@ -52,10 +54,7 @@ const NpcTooltip = ({ npc, className }: NpcTooltipProps) => {
             ) : (
               npcList.map((npcName) => (
                 <div key={npcName} className="w-8">
-                  <img
-                    title={npcName}
-                    src={`@assets/emotes/${npcName.replace(" ", "")}.png`}
-                  />
+                  <img title={npcName} src={getEmoteUrl(npcName)} />
                 </div>
               ))
             )}

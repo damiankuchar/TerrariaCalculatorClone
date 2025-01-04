@@ -8,6 +8,7 @@ export class WorldStore {
   towns: TownStore[] = [];
 
   constructor() {
+    this.addTown();
     makeAutoObservable(this);
   }
 

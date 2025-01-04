@@ -1,6 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import { Npc } from "../lib/npc-builder";
 import { NpcModels } from "../lib/npc-models";
+import { Npcs } from "../models/npcs";
 
 export class TownStore {
   npcs: Npc[] = [];
@@ -91,8 +92,27 @@ export class TownStore {
         return false;
       });
 
+      // Handle Princess
+      if (npc.name === Npcs.Princess) {
+        purchasing = 100;
+        selling = 100;
+
+        if (this.npcs.length < 3) {
+          purchasing = 150;
+          selling = 133;
+        } else {
+          const npcNumber = Math.min(this.npcs.length, 3);
+          purchasing *= Math.pow(0.88, npcNumber);
+          selling *= Math.pow(1.14, npcNumber);
+        }
+      }
+
+      // Final value rounding
       purchasing = Math.round(purchasing);
       selling = Math.round(selling);
+
+      purchasing = Math.min(150, Math.max(75, purchasing));
+      selling = Math.min(133, Math.max(67, selling));
 
       npcsHappiness[npc.name] = [purchasing, selling];
     });
