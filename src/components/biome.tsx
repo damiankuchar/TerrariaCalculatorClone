@@ -14,7 +14,7 @@ const Biome = observer(({ name, town }: BiomeProps) => {
   return (
     <img
       className={cn(
-        "w-[35px] grayscale cursor-pointer",
+        "w-[35px] h-[35px] grayscale cursor-pointer",
         town.biomes.includes(name) ? "grayscale-0" : "grayscale"
       )}
       src={biomeImageSrc}
