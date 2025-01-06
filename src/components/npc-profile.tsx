@@ -35,7 +35,7 @@ const NpcProfile = observer(
 
     return (
       <div className="relative flex flex-col justify-center items-center group/npc mb-[-14px]">
-        <img src={getNpcUrl(npc.name)} />
+        <img src={getNpcUrl(npc.name)} alt={npc.name} />
         <div className="leading-5">{npc.name}</div>
         {worldStore.displayMode === "detailed" ? (
           <>

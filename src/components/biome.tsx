@@ -20,6 +20,7 @@ const Biome = observer(({ name, town }: BiomeProps) => {
           town.biomes.includes(name) ? "grayscale-0" : "grayscale"
         )}
         src={biomeImageSrc}
+        alt={name}
         onClick={() => town.selectBiome(name)}
       />
     </Tooltip>
