@@ -16,8 +16,11 @@ const Toolbar = observer(() => {
         >
           <img
             className="w-6"
-            title={worldStore.displayMode === "detailed" ? "Detailed mode" : "Normal mode"}
-            src={worldStore.displayMode === "detailed" ? MechanicalEye : SuspiciousLookingEye}
+            src={
+              worldStore.displayMode === "detailed"
+                ? MechanicalEye
+                : SuspiciousLookingEye
+            }
             alt="mode icon"
           />
         </button>

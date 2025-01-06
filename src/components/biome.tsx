@@ -1,6 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { cn } from "../lib/utils";
 import { TownStore } from "../stores/town-store";
+import Tooltip from "./tooltip";
 
 interface BiomeProps {
   name: string;
@@ -12,15 +13,16 @@ const Biome = observer(({ name, town }: BiomeProps) => {
     .href;
 
   return (
-    <img
-      className={cn(
-        "w-[35px] h-[35px] grayscale cursor-pointer",
-        town.biomes.includes(name) ? "grayscale-0" : "grayscale"
-      )}
-      src={biomeImageSrc}
-      title={name}
-      onClick={() => town.selectBiome(name)}
-    />
+    <Tooltip text={name}>
+      <img
+        className={cn(
+          "w-[35px] h-[35px] grayscale cursor-pointer",
+          town.biomes.includes(name) ? "grayscale-0" : "grayscale"
+        )}
+        src={biomeImageSrc}
+        onClick={() => town.selectBiome(name)}
+      />
+    </Tooltip>
   );
 });
 

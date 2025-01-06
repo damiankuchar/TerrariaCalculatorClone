@@ -1,6 +1,7 @@
 import { HtmlHTMLAttributes } from "react";
 import { cn } from "../lib/utils";
 import { Npc } from "../lib/npc-builder";
+import Tooltip from "./tooltip";
 
 interface NpcTooltipProps extends HtmlHTMLAttributes<HTMLDivElement> {
   npc: Npc;
@@ -36,7 +37,9 @@ const NpcTooltip = ({ npc, className }: NpcTooltipProps) => {
             ) : (
               biomeList.map((biomeName) => (
                 <div key={biomeName} className="w-8">
-                  <img title={biomeName} src={getEmoteUrl(biomeName)} />
+                  <Tooltip text={biomeName}>
+                    <img src={getEmoteUrl(biomeName)} />
+                  </Tooltip>
                 </div>
               ))
             )}
@@ -54,7 +57,9 @@ const NpcTooltip = ({ npc, className }: NpcTooltipProps) => {
             ) : (
               npcList.map((npcName) => (
                 <div key={npcName} className="w-8">
-                  <img title={npcName} src={getEmoteUrl(npcName)} />
+                  <Tooltip text={npcName}>
+                    <img className="w-8" src={getEmoteUrl(npcName)} />
+                  </Tooltip>
                 </div>
               ))
             )}

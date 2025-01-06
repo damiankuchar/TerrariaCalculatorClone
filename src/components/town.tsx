@@ -5,6 +5,7 @@ import { TownStore } from "../stores/town-store";
 import Biome from "./biome";
 import NpcProfile from "./npc-profile";
 import NpcSelectForm from "./npc-select-form";
+import Tooltip from "./tooltip";
 
 interface TownProps {
   town: TownStore;
@@ -36,11 +37,10 @@ const Town = observer(({ town }: TownProps) => {
         ))}
       </div>
       <div
-        title="Remove town"
         className="absolute right-2 top-1 text-red-500 cursor-pointer select-none invisible group-hover/town:visible"
         onClick={() => worldStore.removeTown(town)}
       >
-        X
+        <Tooltip text="Remove town" position="left">X</Tooltip>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import { Npc } from "../lib/npc-builder";
 import { cn } from "../lib/utils";
 import { rootStore } from "../stores/root-store";
 import NpcTooltip from "./npc-tooltip";
+import Tooltip from "./tooltip";
 
 const getPurchasingClass = (purchasing: number) => {
   if (purchasing <= 90) return "text-happy";
@@ -38,16 +39,23 @@ const NpcProfile = observer(
         <div className="leading-5">{npc.name}</div>
         {worldStore.displayMode === "detailed" ? (
           <>
-            <div title="Prices for goods purchased from NPC" className="leading-5">
-              P:{" "}
-              <span className={cn(getPurchasingClass(purchasing))}>
-                {purchasing}%
-              </span>
-            </div>
-            <div title="Prices of goods sold to NPC" className="leading-none">
-              S:{" "}
-              <span className={cn(getSellingClass(selling))}>{selling}%</span>
-            </div>
+            <Tooltip
+              text="Prices for goods purchased from NPC"
+              position="right"
+            >
+              <div className="leading-5">
+                P:{" "}
+                <span className={cn(getPurchasingClass(purchasing))}>
+                  {purchasing}%
+                </span>
+              </div>
+            </Tooltip>
+            <Tooltip text="Prices of goods sold to NPC" position="right">
+              <div className="leading-none">
+                S:{" "}
+                <span className={cn(getSellingClass(selling))}>{selling}%</span>
+              </div>
+            </Tooltip>
           </>
         ) : (
           <span className={cn(getPurchasingClass(purchasing))}>
@@ -55,11 +63,10 @@ const NpcProfile = observer(
           </span>
         )}
         <div
-          title="Remove from town"
           className="text-red-500 cursor-pointer leading-none invisible group-hover/npc:visible"
           onClick={removeNpc}
         >
-          X
+          <Tooltip text="Remove from town">X</Tooltip>
         </div>
         <NpcTooltip npc={npc} className="group-hover/npc:flex" />
       </div>
