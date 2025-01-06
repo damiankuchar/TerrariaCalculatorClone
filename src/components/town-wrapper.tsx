@@ -8,7 +8,7 @@ const TownWrapper = observer(() => {
   const { worldStore } = rootStore;
 
   return (
-    <div className="flex flex-col gap-1.5 min-w-[600px]">
+    <div className="flex flex-col gap-1.5">
       <Toolbar />
       {worldStore.towns.map((town, index) => (
         <Town key={index} town={town} />

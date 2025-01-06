@@ -16,13 +16,13 @@ const Town = observer(({ town }: TownProps) => {
 
   return (
     <div className="bg-town border-2 border-town-border rounded p-4 relative flex flex-col gap-4 group/town">
-      <div className="flex flex-row gap-5">
-        <div className="flex flex-row gap-0.5">
+      <div className="flex flex-col sm:flex-row gap-5 items-center sm:items-start">
+        <div className="flex flex-row gap-0.5 w-full sm:w-auto justify-between sm:justify-normal">
           {Object.values(Biomes).map((biome, index) => (
             <Biome key={index} name={biome} town={town} />
           ))}
         </div>
-        <div className="flex flex-row gap-1">
+        <div className="flex flex-row gap-1 w-full sm:w-auto">
           <NpcSelectForm town={town} />
         </div>
       </div>

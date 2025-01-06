@@ -1,16 +1,18 @@
 const Header = () => {
   return (
     <div className="flex flex-col">
-      <div className="text-[18px]">
+      <div className="text-[18px] text-center sm:text-start">
         <span>Terraria NPC Happiness Calculator </span>
-        <a
-          href="https://github.com/McjMzn/mcjmzn.github.io"
-          className="text-link"
-          target="_blank"
-        >
-          Dodo
-        </a>
-        <span className="text-description"> version Clone</span>
+        <div className="block sm:inline-block">
+          <a
+            href="https://github.com/McjMzn/mcjmzn.github.io"
+            className="text-link"
+            target="_blank"
+          >
+            Dodo
+          </a>
+          <span className="text-description"> version Clone</span>
+        </div>
       </div>
       <span className="text-description text-[13px]">
         Based on data from the{" "}
