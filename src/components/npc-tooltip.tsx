@@ -58,18 +58,16 @@ const NpcTooltip = ({ npc }: NpcTooltipProps) => {
               <span>n/a</span>
             ) : (
               npcList.map((npcName) => (
-                <div key={npcName} className="w-8">
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <img
-                        className="w-8"
-                        src={getEmoteUrl(npcName)}
-                        alt={npcName}
-                      />
-                    </TooltipTrigger>
-                    <TooltipContent>{npcName}</TooltipContent>
-                  </Tooltip>
-                </div>
+                <Tooltip key={npcName}>
+                  <TooltipTrigger>
+                    <img
+                      className="w-8"
+                      src={getEmoteUrl(npcName)}
+                      alt={npcName}
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent>{npcName}</TooltipContent>
+                </Tooltip>
               ))
             )}
           </div>
