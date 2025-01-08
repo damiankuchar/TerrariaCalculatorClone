@@ -1,4 +1,5 @@
 import { observer } from "mobx-react-lite";
+import { forwardRef } from "react";
 import { Npc } from "../lib/npc-builder";
 import { cn } from "../lib/utils";
 import { rootStore } from "../stores/root-store";
@@ -23,7 +24,8 @@ interface NpcProfileProps {
 }
 
 const NpcProfile = observer(
-  ({ npc, percentages, removeNpc }: NpcProfileProps) => {
+  forwardRef<HTMLDivElement, NpcProfileProps>(
+    ({ npc, percentages, removeNpc }, ref) => {
     const { worldStore } = rootStore;
     const [purchasing, selling] = percentages;
 
@@ -33,7 +35,7 @@ const NpcProfile = observer(
     };
 
     return (
-      <div className="relative flex flex-col justify-center items-center group/npc mb-[-14px]">
+      <div ref={ref} className="relative flex flex-col justify-end items-center group/npc mb-[-14px]">
         <img src={getNpcUrl(npc.name)} alt={npc.name} />
         <div className="leading-5">{npc.name}</div>
         {worldStore.displayMode === "detailed" ? (
@@ -80,6 +82,6 @@ const NpcProfile = observer(
       </div>
     );
   }
-);
+));
 
 export default NpcProfile;

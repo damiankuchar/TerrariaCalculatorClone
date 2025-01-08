@@ -31,7 +31,7 @@ const Town = observer(({ town }: TownProps) => {
       <div className="flex flex-row flex-wrap gap-4 ml-2">
         {town.npcs.map((npc) => (
           <Popover key={npc.name} placement="top">
-            <PopoverTrigger>
+            <PopoverTrigger asChild>
               <NpcProfile
                 npc={npc}
                 percentages={town.npcHappiness[npc.name]}
