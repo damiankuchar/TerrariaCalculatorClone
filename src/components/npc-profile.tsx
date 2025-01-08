@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import { Npc } from "../lib/npc-builder";
 import { cn } from "../lib/utils";
 import { rootStore } from "../stores/root-store";
-import Tooltip from "./tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 const getPurchasingClass = (purchasing: number) => {
   if (purchasing <= 90) return "text-happy";
@@ -38,22 +38,29 @@ const NpcProfile = observer(
         <div className="leading-5">{npc.name}</div>
         {worldStore.displayMode === "detailed" ? (
           <>
-            <Tooltip
-              text="Prices for goods purchased from NPC"
-              position="right"
-            >
-              <div className="leading-5">
-                P:{" "}
-                <span className={cn(getPurchasingClass(purchasing))}>
-                  {purchasing}%
-                </span>
-              </div>
+            <Tooltip>
+              <TooltipTrigger>
+                <div className="leading-5">
+                  P:{" "}
+                  <span className={cn(getPurchasingClass(purchasing))}>
+                    {purchasing}%
+                  </span>
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>
+                Prices for goods purchased from NPC
+              </TooltipContent>
             </Tooltip>
-            <Tooltip text="Prices of goods sold to NPC" position="right">
-              <div className="leading-none">
-                S:{" "}
-                <span className={cn(getSellingClass(selling))}>{selling}%</span>
-              </div>
+            <Tooltip>
+              <TooltipTrigger>
+                <div className="leading-none">
+                  S:{" "}
+                  <span className={cn(getSellingClass(selling))}>
+                    {selling}%
+                  </span>
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>Prices of goods sold to NPC</TooltipContent>
             </Tooltip>
           </>
         ) : (
@@ -65,7 +72,10 @@ const NpcProfile = observer(
           className="text-red-500 cursor-pointer leading-none invisible group-hover/npc:visible"
           onClick={removeNpc}
         >
-          <Tooltip text="Remove from town">X</Tooltip>
+          <Tooltip>
+            <TooltipTrigger>X</TooltipTrigger>
+            <TooltipContent>Remove from town</TooltipContent>
+          </Tooltip>
         </div>
       </div>
     );

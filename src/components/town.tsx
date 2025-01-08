@@ -5,9 +5,9 @@ import { TownStore } from "../stores/town-store";
 import Biome from "./biome";
 import NpcProfile from "./npc-profile";
 import NpcSelectForm from "./npc-select-form";
-import Tooltip from "./tooltip";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import NpcTooltip from "./npc-tooltip";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 interface TownProps {
   town: TownStore;
@@ -48,8 +48,9 @@ const Town = observer(({ town }: TownProps) => {
         className="absolute right-2 top-1 text-red-500 cursor-pointer select-none invisible group-hover/town:visible"
         onClick={() => worldStore.removeTown(town)}
       >
-        <Tooltip text="Remove town" position="left">
-          X
+        <Tooltip>
+          <TooltipTrigger>X</TooltipTrigger>
+          <TooltipContent>Remove town</TooltipContent>
         </Tooltip>
       </div>
     </div>

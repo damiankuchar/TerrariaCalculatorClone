@@ -1,6 +1,6 @@
 import { Npc } from "../lib/npc-builder";
 import { cn } from "../lib/utils";
-import Tooltip from "./tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 interface NpcTooltipProps {
   npc: Npc;
@@ -36,8 +36,11 @@ const NpcTooltip = ({ npc }: NpcTooltipProps) => {
             ) : (
               biomeList.map((biomeName) => (
                 <div key={biomeName} className="w-8">
-                  <Tooltip text={biomeName}>
-                    <img src={getEmoteUrl(biomeName)} alt={biomeName} />
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <img src={getEmoteUrl(biomeName)} alt={biomeName} />
+                    </TooltipTrigger>
+                    <TooltipContent>{biomeName}</TooltipContent>
                   </Tooltip>
                 </div>
               ))
@@ -56,12 +59,15 @@ const NpcTooltip = ({ npc }: NpcTooltipProps) => {
             ) : (
               npcList.map((npcName) => (
                 <div key={npcName} className="w-8">
-                  <Tooltip text={npcName}>
-                    <img
-                      className="w-8"
-                      src={getEmoteUrl(npcName)}
-                      alt={npcName}
-                    />
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <img
+                        className="w-8"
+                        src={getEmoteUrl(npcName)}
+                        alt={npcName}
+                      />
+                    </TooltipTrigger>
+                    <TooltipContent>{npcName}</TooltipContent>
                   </Tooltip>
                 </div>
               ))
@@ -73,11 +79,7 @@ const NpcTooltip = ({ npc }: NpcTooltipProps) => {
   };
 
   return (
-    <div
-      className={
-        "bg-town-select flex flex-col z-20 p-px rounded"
-      }
-    >
+    <div className={"bg-town-select flex flex-col z-20 p-px rounded"}>
       <table className="border-collapse">
         <thead>
           <tr className="bg-town-select">
