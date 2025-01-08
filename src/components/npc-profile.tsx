@@ -2,7 +2,6 @@ import { observer } from "mobx-react-lite";
 import { Npc } from "../lib/npc-builder";
 import { cn } from "../lib/utils";
 import { rootStore } from "../stores/root-store";
-import NpcTooltip from "./npc-tooltip";
 import Tooltip from "./tooltip";
 
 const getPurchasingClass = (purchasing: number) => {
@@ -68,7 +67,6 @@ const NpcProfile = observer(
         >
           <Tooltip text="Remove from town">X</Tooltip>
         </div>
-        <NpcTooltip npc={npc} className="group-hover/npc:flex" />
       </div>
     );
   }

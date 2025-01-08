@@ -6,6 +6,8 @@ import Biome from "./biome";
 import NpcProfile from "./npc-profile";
 import NpcSelectForm from "./npc-select-form";
 import Tooltip from "./tooltip";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import NpcTooltip from "./npc-tooltip";
 
 interface TownProps {
   town: TownStore;
@@ -28,19 +30,27 @@ const Town = observer(({ town }: TownProps) => {
       </div>
       <div className="flex flex-row flex-wrap gap-4 ml-2">
         {town.npcs.map((npc) => (
-          <NpcProfile
-            key={npc.name}
-            npc={npc}
-            percentages={town.npcHappiness[npc.name]}
-            removeNpc={() => town.removeNpc(npc.name)}
-          />
+          <Popover key={npc.name} placement="top">
+            <PopoverTrigger>
+              <NpcProfile
+                npc={npc}
+                percentages={town.npcHappiness[npc.name]}
+                removeNpc={() => town.removeNpc(npc.name)}
+              />
+            </PopoverTrigger>
+            <PopoverContent>
+              <NpcTooltip npc={npc} />
+            </PopoverContent>
+          </Popover>
         ))}
       </div>
       <div
         className="absolute right-2 top-1 text-red-500 cursor-pointer select-none invisible group-hover/town:visible"
         onClick={() => worldStore.removeTown(town)}
       >
-        <Tooltip text="Remove town" position="left">X</Tooltip>
+        <Tooltip text="Remove town" position="left">
+          X
+        </Tooltip>
       </div>
     </div>
   );

@@ -1,13 +1,12 @@
-import { HtmlHTMLAttributes } from "react";
-import { cn } from "../lib/utils";
 import { Npc } from "../lib/npc-builder";
+import { cn } from "../lib/utils";
 import Tooltip from "./tooltip";
 
-interface NpcTooltipProps extends HtmlHTMLAttributes<HTMLDivElement> {
+interface NpcTooltipProps {
   npc: Npc;
 }
 
-const NpcTooltip = ({ npc, className }: NpcTooltipProps) => {
+const NpcTooltip = ({ npc }: NpcTooltipProps) => {
   const getEmoteUrl = (emoteName: string) => {
     const name = emoteName.replace(" ", "");
     return new URL(`../assets/emotes/${name}.png`, import.meta.url).href;
@@ -75,10 +74,9 @@ const NpcTooltip = ({ npc, className }: NpcTooltipProps) => {
 
   return (
     <div
-      className={cn(
-        "bg-town-select absolute hidden flex-col -top-28 left-8 z-20 p-px rounded",
-        className
-      )}
+      className={
+        "bg-town-select flex flex-col z-20 p-px rounded"
+      }
     >
       <table className="border-collapse">
         <thead>
