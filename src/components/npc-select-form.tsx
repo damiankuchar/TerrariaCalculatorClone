@@ -27,7 +27,7 @@ const NpcSelectForm = observer(({ town }: NpcSelectFormProps) => {
         name="town-select"
         value={selectedNpc}
         onChange={handleChange}
-        className="npc-select bg-town-select border-2 border-town-select-border rounded py-[5px] px-[10px] grow-[5] sm:grow-0"
+        className="custom-scroll bg-town-select border-2 border-town-select-border rounded py-[5px] px-[10px] grow-[5] sm:grow-0"
       >
         <option value="" hidden disabled></option>
         {worldStore.availableNpcs.map((npc) => (
