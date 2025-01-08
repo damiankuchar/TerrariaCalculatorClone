@@ -7,7 +7,6 @@ import {
   offset,
   safePolygon,
   shift,
-  useClick,
   useDismiss,
   useFloating,
   useHover,
@@ -69,14 +68,11 @@ function usePopover({
 
   const context = data.context;
 
-  const click = useClick(context, {
-    enabled: controlledOpen == null,
-  });
   const hover = useHover(context, { handleClose: safePolygon() });
   const dismiss = useDismiss(context);
   const role = useRole(context);
 
-  const interactions = useInteractions([click, hover, dismiss, role]);
+  const interactions = useInteractions([hover, dismiss, role]);
 
   return useMemo(
     () => ({

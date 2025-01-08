@@ -49,7 +49,7 @@ const Town = observer(({ town }: TownProps) => {
         onClick={() => worldStore.removeTown(town)}
       >
         <Tooltip>
-          <TooltipTrigger>X</TooltipTrigger>
+          <TooltipTrigger asChild><span>X</span></TooltipTrigger>
           <TooltipContent>Remove town</TooltipContent>
         </Tooltip>
       </div>

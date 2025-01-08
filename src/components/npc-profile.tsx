@@ -39,7 +39,7 @@ const NpcProfile = observer(
         {worldStore.displayMode === "detailed" ? (
           <>
             <Tooltip>
-              <TooltipTrigger>
+              <TooltipTrigger asChild>
                 <div className="leading-5">
                   P:{" "}
                   <span className={cn(getPurchasingClass(purchasing))}>
@@ -52,7 +52,7 @@ const NpcProfile = observer(
               </TooltipContent>
             </Tooltip>
             <Tooltip>
-              <TooltipTrigger>
+              <TooltipTrigger asChild>
                 <div className="leading-none">
                   S:{" "}
                   <span className={cn(getSellingClass(selling))}>
@@ -73,7 +73,7 @@ const NpcProfile = observer(
           onClick={removeNpc}
         >
           <Tooltip>
-            <TooltipTrigger>X</TooltipTrigger>
+            <TooltipTrigger asChild><span>X</span></TooltipTrigger>
             <TooltipContent>Remove from town</TooltipContent>
           </Tooltip>
         </div>

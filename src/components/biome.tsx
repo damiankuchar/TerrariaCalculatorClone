@@ -14,7 +14,7 @@ const Biome = observer(({ name, town }: BiomeProps) => {
 
   return (
     <Tooltip>
-      <TooltipTrigger>
+      <TooltipTrigger asChild>
         <img
           className={cn(
             "w-[35px] h-[35px] grayscale cursor-pointer",

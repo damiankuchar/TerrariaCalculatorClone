@@ -37,7 +37,7 @@ const NpcTooltip = ({ npc }: NpcTooltipProps) => {
               biomeList.map((biomeName) => (
                 <div key={biomeName} className="w-8">
                   <Tooltip>
-                    <TooltipTrigger>
+                    <TooltipTrigger asChild>
                       <img src={getEmoteUrl(biomeName)} alt={biomeName} />
                     </TooltipTrigger>
                     <TooltipContent>{biomeName}</TooltipContent>
@@ -59,7 +59,7 @@ const NpcTooltip = ({ npc }: NpcTooltipProps) => {
             ) : (
               npcList.map((npcName) => (
                 <Tooltip key={npcName}>
-                  <TooltipTrigger>
+                  <TooltipTrigger asChild>
                     <img
                       className="w-8"
                       src={getEmoteUrl(npcName)}
